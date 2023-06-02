@@ -1,0 +1,25 @@
+{
+    "name": "Minimize for Youtube",
+    "description": "Simplifying the Youtube Homepage",
+    "version": "1.0",
+    "manifest_version": 3,
+    "action": {},
+    "permissions": [
+       "activeTab",
+       "scripting",
+       "tabs",
+       "storage",
+       "identity",
+       "webNavigation"
+    ],
+    "background": {
+       "service_worker": "background.js",
+       "type": "module"
+    },
+    "content_scripts": [
+        {
+          "matches": ["https://www.google.com/"],
+          "js": ["foreground.js"]
+        }
+    ]
+ }
