@@ -18,8 +18,9 @@
     },
     "content_scripts": [
         {
-          "matches": ["https://www.google.com/"],
-          "js": ["foreground.js"]
+          "matches": ["https://www.youtube.com/"],
+          "js": ["foreground.js"],
+          "css": ["styles/homepage.css"]
         }
     ]
  }

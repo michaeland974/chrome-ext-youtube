@@ -2,12 +2,11 @@
   "compileOnSave": true,
   "compilerOptions": {
      "strict": true,
-     "module": "commonjs",
+     "module": "ESNext",
      "target": "es6",
      "esModuleInterop": true,
      "sourceMap": true,
      "noImplicitAny": true,
-     "resolveJsonModule": true,
      "rootDir": "src",
      "outDir": "dist/js",
      "noEmitOnError": true,

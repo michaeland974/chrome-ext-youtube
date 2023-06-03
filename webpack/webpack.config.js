@@ -9,6 +9,7 @@ module.exports = {
    output: {
       path: path.join(__dirname, "../dist"),
       filename: "[name].js",
+      clean: true,
    },
    resolve: {
       extensions: [".ts", ".js"],
@@ -20,11 +21,18 @@ module.exports = {
             loader: "ts-loader",
             exclude: /node_modules/,
          },
+         {
+            test: /\.css$/i,
+            use: ['style-loader', 'css-loader'],
+        },
       ],
    },
    plugins: [
       new CopyPlugin({
-         patterns: [{from: ".", to: ".", context: "public"}]
+         patterns: [
+          {from: ".", to: ".", context: "public"},
+          {from: "src/styles", to: "./styles"}
+        ]
       })
    ],
 };
