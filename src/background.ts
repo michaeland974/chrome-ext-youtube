@@ -18,7 +18,6 @@ function injectScript(tab: chrome.tabs.Tab, targetUrl: string) {
          target: {tabId: tab.id},
          files: ['./foreground.js']
        });
-       console.log("from inject");
   }
 }
 
