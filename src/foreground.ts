@@ -12,7 +12,7 @@ const shortsSelector = '#contents > ytd-rich-section-renderer';
 const shorts: HTMLElement | null = document.querySelector(shortsSelector);
 
 const getVideoElements = (parent: HTMLElement | null, 
-                   selector: string): Element[] | [] => {
+                          selector: string): Element[] | [] => {
   const videosContainer = parent?.querySelector(selector);
   const videos = videosContainer?.children;
   
