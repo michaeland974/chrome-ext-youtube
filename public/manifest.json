@@ -16,12 +16,15 @@
        "service_worker": "background.js",
        "type": "module"
     },
+    "host_permissions": [
+        "https://www.youtube.com/"
+    ],
     "content_scripts": [
         {
           "matches": ["https://www.youtube.com/"],
-          "excludeMatches": [ "https://www.youtube.com/watch*" ],
           "js": ["foreground.js"],
-          "css": ["styles/homepage.css"]
+          "css": ["styles/homepage.css"],
+          "run_at": "document_end"
         }
     ]
  }
