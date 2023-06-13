@@ -7,10 +7,7 @@
     "permissions": [
        "activeTab",
        "scripting",
-       "tabs",
-       "storage",
-       "identity",
-       "webNavigation"
+       "tabs"
     ],
     "background": {
        "service_worker": "background.js",
@@ -22,7 +19,6 @@
     "content_scripts": [
         {
           "matches": ["https://www.youtube.com/"],
-          "js": ["foreground.js"],
           "css": ["styles/homepage.css"],
           "run_at": "document_end"
         }
