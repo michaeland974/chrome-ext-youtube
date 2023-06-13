@@ -7,9 +7,7 @@ export class DOMManipulator{
   constructor(
     public readonly Shorts: YoutubeElement,
     public readonly Grid: YoutubeElement
-    ) {
-    this.getVideos = this.getVideos.bind(this);
-  }
+  ) {}
 
   private getVideos (parent: HTMLElement | null, 
                      selector: string): Element[] | [] {
@@ -22,10 +20,12 @@ export class DOMManipulator{
     grid: document.querySelector(this.Grid.selector)
   }
 
-  videos = {
-    shorts: this.getVideos(this.parentElements.shorts, 
-                           this.Shorts.childrenSelector),
-    grid: this.getVideos(this.parentElements.grid, 
-                         this.Grid.childrenSelector)
+  public videos() {
+    return {
+      shorts: this.getVideos(this.parentElements.shorts, 
+                             this.Shorts.childrenSelector),
+      grid: this.getVideos(this.parentElements.grid, 
+                           this.Grid.childrenSelector)
+    }
   }
 }
