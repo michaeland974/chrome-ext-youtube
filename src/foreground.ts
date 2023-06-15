@@ -20,33 +20,41 @@ const GuideButton: YoutubeElement = {
   childrenSelector: '#button'
 }
 
+const GuideHeader: YoutubeElement = {
+  selector: '#guide-content', 
+  childrenSelector: '#header'
+}
+
+const PrimaryContent: Omit<YoutubeElement, 'childrenSelector'> = {
+  selector: '#primary'
+}
+
 const chipBar: HTMLElement | null = document.getElementById('chips');
 const chips: HTMLCollection | undefined = chipBar?.children;
 
 (async () => {
-  const YouTubeDOM = new DOMManipulator(Shorts, Grid, GuideButton);
+  const YouTubeDOM = new DOMManipulator(Shorts, Grid, GuideHeader, PrimaryContent);
   await waitForElement(YouTubeDOM.parentElements.grid);
-  console.log(YouTubeDOM.parentElements.grid);
 })()
 
- function waitForElement(element: HTMLElement | null): Promise<boolean> {
-    return new Promise((resolve) => {
-      const observer = new MutationObserver(() => {
-        if (element) {
-          resolve(true);
-          observer.disconnect();
-        }
-      });
-      if(element){
+function waitForElement(element: HTMLElement | null): Promise<boolean> {
+  return new Promise((resolve) => {
+    const observer = new MutationObserver(() => {
+      if (element) {
         resolve(true);
-      }else{
-        observer.observe(document.body, {
-          childList: true,
-          subtree: true
-        });
+        observer.disconnect();
       }
     });
-  }
+    if(element){
+      resolve(true);
+    }else{
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
+    }
+  });
+}
 
 
 
