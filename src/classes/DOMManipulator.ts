@@ -6,18 +6,30 @@ export interface YoutubeElement {
 export class DOMManipulator{
   constructor(
     public readonly Shorts: YoutubeElement,
-    public readonly Grid: YoutubeElement
+    public readonly Grid: YoutubeElement,
+    public readonly GuideButton: YoutubeElement,
   ) {}
 
-  private getVideos (parent: HTMLElement | null, 
-                     selector: string): Element[] | [] {
-    const videos = parent?.querySelectorAll(selector);
-    return (videos===undefined) ? [] : [...videos];  
+  elements = {
+    button: document.querySelector
+      (`${this.GuideButton.selector} > ${this.GuideButton.childrenSelector}`)
   }
 
   parentElements: Record<string, HTMLElement | null> = {
     shorts: document.querySelector(this.Shorts.selector),
     grid: document.querySelector(this.Grid.selector)
+  }
+
+  public listener() {
+    this.elements.button?.addEventListener('click', () => {
+      console.log('click');
+    })
+  }
+
+  private getVideos (parent: HTMLElement | null, 
+                     selector: string): Element[] | [] {
+    const videos = parent?.querySelectorAll(selector);
+    return (videos===undefined) ? [] : [...videos];  
   }
 
   public videos() {
