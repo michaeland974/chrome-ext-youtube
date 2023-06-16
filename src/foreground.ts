@@ -1,4 +1,5 @@
-import { YoutubeElement, DOMManipulator } from './classes/DOMManipulator'
+import { YoutubeElement, DOMManipulator } from './classes/DOMManipulator';
+import { setAttributes, createElements  } from './scripts/utils';
 
 const Shorts: YoutubeElement = {
   selector: '#contents #content #contents',
@@ -34,7 +35,8 @@ const chips: HTMLCollection | undefined = chipBar?.children;
 
 (async () => {
   const YouTubeDOM = new DOMManipulator(Shorts, Grid, GuideHeader, PrimaryContent);
-  await waitForElement(YouTubeDOM.parentElements.grid);
+  const { header } = YouTubeDOM.parentElements;
+ 
 })()
 
 function waitForElement(element: HTMLElement | null): Promise<boolean> {

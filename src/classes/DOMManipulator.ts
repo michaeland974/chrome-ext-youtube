@@ -11,15 +11,15 @@ export class DOMManipulator{
     public PrimaryContent: Omit<YoutubeElement, 'childrenSelector'>
   ) {}
 
-  elements = {
-    header: document.querySelector
-      (`${this.GuideHeader.selector} > ${this.GuideHeader.childrenSelector}`),
+  elements: Record<string, HTMLElement | null> = {
     primary: document.querySelector(this.PrimaryContent.selector)
   }
 
   parentElements: Record<string, HTMLElement | null> = {
     shorts: document.querySelector(this.Shorts.selector),
-    grid: document.querySelector(this.Grid.selector)
+    grid: document.querySelector(this.Grid.selector),
+    header: document.querySelector
+      (`${this.GuideHeader.selector} > ${this.GuideHeader.childrenSelector}`)
   }
 
   private getVideos (parent: HTMLElement | null, 
