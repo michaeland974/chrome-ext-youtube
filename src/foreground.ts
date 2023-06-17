@@ -1,5 +1,5 @@
 import { YoutubeElement, DOMManipulator } from './classes/DOMManipulator';
-import { setAttributes, createElements  } from './scripts/utils';
+import { createElements  } from './scripts/utils';
 
 const Shorts: YoutubeElement = {
   selector: '#contents #content #contents',
@@ -35,6 +35,9 @@ const chips: HTMLCollection | undefined = chipBar?.children;
 
 (async () => {
   const YouTubeDOM = new DOMManipulator(Shorts, Grid, GuideHeader, PrimaryContent);
+  createElements([{id: 'header-wrapper', tag: 'div'}, 
+                  {id: 'video-toggle', tag: 'button', text: 'Homepage Videos'}]);
+
   const { header } = YouTubeDOM.parentElements;
  
 })()
