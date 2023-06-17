@@ -35,11 +35,10 @@ const chips: HTMLCollection | undefined = chipBar?.children;
 
 (async () => {
   const YouTubeDOM = new DOMManipulator(Shorts, Grid, GuideHeader, PrimaryContent);
+  const { header } = YouTubeDOM.parentElements;
   createElements([{id: 'header-wrapper', tag: 'div'}, 
                   {id: 'video-toggle', tag: 'button', text: 'Homepage Videos'}]);
-
-  const { header } = YouTubeDOM.parentElements;
- 
+  
 })()
 
 function waitForElement(element: HTMLElement | null): Promise<boolean> {

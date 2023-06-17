@@ -1,20 +1,17 @@
 type NewElement = {
   id: string, 
-  tag: keyof HTMLElementTagNameMap
+  tag: keyof HTMLElementTagNameMap,
+  text?: string
 }
 
 export function createElements(elements: NewElement[]) {
-  let newElements: HTMLElement[] = [];
-  
   elements.forEach((el) => {
-    const newElement = document.createElement(el['tag']);
-      newElement.id = el['id'];
-    newElements.push(newElement);
+    const element = document.createElement(el['tag']);
+    element.id = el['id'];
+    element.setAttribute('chrome-ext', 'true');   
+      el['text'] !== undefined ?
+        element.textContent = el['text'] : 
+        element.textContent = '';
   })
-  return newElements;                           
-}
-
-export function setAttributes(elements: HTMLElement[]): void{
-  elements.forEach((el) => el.setAttribute('chrome-ext', 'true'));
 }
 
