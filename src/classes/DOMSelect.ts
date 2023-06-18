@@ -3,7 +3,7 @@ export interface YoutubeElement {
   childrenSelector: string
 }
 
-export class DOMManipulator{
+export class DOMSelect{
   constructor(
     public Shorts: YoutubeElement,
     public Grid: YoutubeElement,

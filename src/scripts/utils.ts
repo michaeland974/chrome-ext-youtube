@@ -1,4 +1,4 @@
-type NewElement = {
+interface NewElement {
   id: string, 
   tag: keyof HTMLElementTagNameMap,
   text?: string

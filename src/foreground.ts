@@ -1,4 +1,4 @@
-import { YoutubeElement, DOMManipulator } from './classes/DOMManipulator';
+import { YoutubeElement, DOMSelect } from './classes/DOMSelect';
 import { createElements  } from './scripts/utils';
 
 const Shorts: YoutubeElement = {
@@ -34,7 +34,7 @@ const chipBar: HTMLElement | null = document.getElementById('chips');
 const chips: HTMLCollection | undefined = chipBar?.children;
 
 (async () => {
-  const YouTubeDOM = new DOMManipulator(Shorts, Grid, GuideHeader, PrimaryContent);
+  const YouTubeDOM = new DOMSelect(Shorts, Grid, GuideHeader, PrimaryContent);
   const { header } = YouTubeDOM.parentElements;
   const headerChildren = header?.children;
   
