@@ -1,7 +1,4 @@
-export interface YoutubeElement {
-  selector: string,
-  childrenSelector: string
-}
+import { YoutubeElement } from "../interfaces/interfaces";
 
 export class DOMSelect{
   constructor(

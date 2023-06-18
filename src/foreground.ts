@@ -1,5 +1,6 @@
-import { YoutubeElement, DOMSelect } from './classes/DOMSelect';
-import { createElements  } from './scripts/utils';
+import { DOMSelect } from './classes/DOMSelect';
+import { DOMManipulate } from './classes/DOMManipulate';
+import { YoutubeElement } from './interfaces/interfaces';
 
 const Shorts: YoutubeElement = {
   selector: '#contents #content #contents',
@@ -35,16 +36,11 @@ const chips: HTMLCollection | undefined = chipBar?.children;
 
 (async () => {
   const YouTubeDOM = new DOMSelect(Shorts, Grid, GuideHeader, PrimaryContent);
-  const { header } = YouTubeDOM.parentElements;
-  const headerChildren = header?.children;
-  
-  const [wrapper, toggle] = createElements([
+  const Factory = new DOMManipulate([
     {id: 'header-wrapper', tag: 'div'}, 
     {id: 'toggle-videos-view', tag: 'button', text: 'Homepage Videos'}
   ]);
-  
-  wrapper.append(headerChildren![0], headerChildren![1]);
-  header?.append(wrapper, toggle);
+  const [wrapper, toggle] = Factory.elements;
 })()
 
 function waitForElement(element: HTMLElement | null): Promise<boolean> {
