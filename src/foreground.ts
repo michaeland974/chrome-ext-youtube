@@ -1,6 +1,7 @@
 import { DOMSelect } from './classes/DOMSelect';
 import { DOMManipulate } from './classes/DOMManipulate';
 import { YoutubeElement } from './interfaces/interfaces';
+import { waitForElement } from './scripts/utils';
 
 const Shorts: YoutubeElement = {
   selector: '#contents #content #contents',
@@ -43,24 +44,6 @@ const chips: HTMLCollection | undefined = chipBar?.children;
   const [wrapper, toggle] = Factory.elements;
 })()
 
-function waitForElement(element: HTMLElement | null): Promise<boolean> {
-  return new Promise((resolve) => {
-    const observer = new MutationObserver(() => {
-      if (element) {
-        resolve(true);
-        observer.disconnect();
-      }
-    });
-    if(element){
-      resolve(true);
-    }else{
-      observer.observe(document.body, {
-        childList: true,
-        subtree: true
-      });
-    }
-  });
-}
 
 
 
