@@ -36,12 +36,19 @@ const chipBar: HTMLElement | null = document.getElementById('chips');
 const chips: HTMLCollection | undefined = chipBar?.children;
 
 (async () => {
-  const YouTubeDOM = new DOMSelect(Shorts, Grid, GuideHeader, PrimaryContent);
   const Factory = new DOMManipulate([
     {id: 'header-wrapper', tag: 'div'}, 
     {id: 'toggle-videos-view', tag: 'button', text: 'Homepage Videos'}
   ]);
   const [wrapper, toggle] = Factory.elements;
+  
+  const YouTubeDOM = new DOMSelect(Shorts, Grid, GuideHeader, PrimaryContent);
+  const { header } = YouTubeDOM.parentElements;
+    if(header){
+      const [ navIcon, youtubeIcon ] = [...header.children];
+      wrapper.append(navIcon, youtubeIcon);
+      header.append(wrapper, toggle);
+    }
 })()
 
 
