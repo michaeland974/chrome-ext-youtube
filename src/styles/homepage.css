@@ -3,14 +3,34 @@
 }
 
 #guide-content > #header{
-  background-color: lightblue;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: auto !important;
+
+  --light-grey: hsla(0, 0%, 93.3%, 0.8);
+  --guide-font-size: 14px;
+  --guide-font-family: "Roboto", "Arial", sans-serif;
 }
 
 #header-wrapper[chrome-ext='true']{
   display: flex;
+  align-items: center;
   border: 2px solid lightpink;
 }
 
-#video-toggle[chrome-ext='true']{
-  background-color: lightblue;
+#toggle-videos-view[chrome-ext='true']{
+  background-color: inherit;
+  font-family: var(--guide-font-family);
+  font-size: var(--guide-font-size);
+  font-weight: 400;
+  border-radius: 8px;
+  padding: 12px;
+  border: none;
+  cursor: pointer;
+}
+
+#toggle-videos-view[chrome-ext='true']:hover{
+  font-weight: 500;
+  background-color: var(--light-grey);
 }
