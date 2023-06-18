@@ -20,7 +20,8 @@
     "content_scripts": [
         {
           "matches": ["https://www.youtube.com/"],
-          "css": ["styles/homepage.css"],
+          "css": ["styles/homepage.css", 
+                  "styles/guide.css"],
           "run_at": "document_end"
         }
     ]

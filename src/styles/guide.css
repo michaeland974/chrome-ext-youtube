@@ -1,0 +1,45 @@
+#guide-content > #header{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: auto !important;
+
+  --light-grey: #dbdbdbc4;
+  --light-blue: #def1ff;
+  --call-to-action-blue: #065fd4;
+  --gap: 12px;
+  --guide-font-size: 14px;
+  --guide-font-family: "Roboto", "Arial", sans-serif;
+}
+
+/* Styling for divider on guide */
+#header > * { margin-right: -12px; }
+#header{
+  margin-right: var(--gap);
+  padding-bottom: var(--gap);
+  border-bottom: 1px solid var(--light-grey);
+}
+
+#header-wrapper[chrome-ext='true']{
+  display: flex;
+  align-items: center;
+}
+
+#toggle-videos-view[chrome-ext='true']{
+  background-color: inherit;
+  color: var(--call-to-action-blue);
+  font-family: var(--guide-font-family);
+  font-size: var(--guide-font-size);
+  font-weight: 500;
+  outline: 1px solid var(--light-grey);
+  border-radius: 20px;
+  border: none;
+  padding: var(--gap);
+  margin-left: 16px;
+  cursor: pointer;
+}
+
+#toggle-videos-view[chrome-ext='true']:hover{
+  outline: none;
+  background-color: var(--light-blue);
+}

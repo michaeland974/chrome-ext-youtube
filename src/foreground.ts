@@ -43,12 +43,14 @@ const chips: HTMLCollection | undefined = chipBar?.children;
   const [wrapper, toggle] = Factory.elements;
   
   const YouTubeDOM = new DOMSelect(Shorts, Grid, GuideHeader, PrimaryContent);
-  const { header } = YouTubeDOM.parentElements;
+  const {header, grid} = YouTubeDOM.parentElements;
     if(header){
       const [ navIcon, youtubeIcon ] = [...header.children];
       wrapper.append(navIcon, youtubeIcon);
       header.append(wrapper, toggle);
     }
+
+  await waitForElement(grid); //check for boolean?
 })()
 
 
