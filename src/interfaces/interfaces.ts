@@ -3,7 +3,7 @@ export interface YoutubeElement {
   childrenSelector: string
 }
 
-export interface NewElement {
+export interface NewElement{
   id: string, 
   tag: keyof HTMLElementTagNameMap,
   text?: string

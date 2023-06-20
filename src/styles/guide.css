@@ -43,3 +43,7 @@
   outline: none;
   background-color: var(--light-blue);
 }
+
+#guide-inner-content[closed]{
+  display: none;
+}

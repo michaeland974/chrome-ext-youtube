@@ -15,9 +15,9 @@ export class DOMSelect{
     primary: document.querySelector(this.PrimaryContent.selector),
     guide: {
       header: document.querySelector
-        (`${this.Guide.header.selector} > ${this.Guide.header.childrenSelector}`),
+        (`${this.Guide.header.selector} > ${this.Guide.header.childrenSelector}`) as HTMLDivElement,
       content: document.querySelector
-        (`${this.Guide.content.selector} > ${this.Guide.content.childrenSelector}`)
+        (`${this.Guide.content.selector} > ${this.Guide.content.childrenSelector}`) as HTMLDivElement
     }
   }
 

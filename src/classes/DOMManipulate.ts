@@ -20,4 +20,12 @@ export class DOMManipulate{
   };
 
   elements = this.createElements(this.NewElements);
+
+  public addListener(listener: { target: HTMLElement, 
+                                 display: HTMLDivElement }){
+    const {target, display} = listener;
+    target.addEventListener('click', () => {
+      display.toggleAttribute('is-closed');
+    })                    
+  }
 }
