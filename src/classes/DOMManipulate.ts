@@ -10,7 +10,6 @@ export class DOMManipulate{
       elements.map((el) => {
         const element = document.createElement(el['tag']);
         element.id = el['id'];
-        element.setAttribute('chrome-ext', '');   
           if(el['text']) element.textContent = el['text'];
           if(el['attribute']) element.setAttribute(el['attribute'], '');
         return element;

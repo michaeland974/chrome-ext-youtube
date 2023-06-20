@@ -72,8 +72,6 @@ const chips: HTMLCollection | undefined = chipBar?.children;
     wrapper.append(navIcon, youtubeIcon);
     (guide.header).append(wrapper, toggleView);
     (guide.content).append(videosView);
-      
-    
   }
 })()
 

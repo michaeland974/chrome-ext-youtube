@@ -20,12 +20,12 @@
   border-bottom: 1px solid var(--light-grey);
 }
 
-#header-wrapper[chrome-ext]{
+#header-wrapper{
   display: flex;
   align-items: center;
 }
 
-#toggle-videos-view[chrome-ext]{
+#toggle-videos-view{
   background-color: inherit;
   color: var(--call-to-action-blue);
   font-family: var(--guide-font-family);
@@ -39,17 +39,17 @@
   cursor: pointer;
 }
 
-#toggle-videos-view[chrome-ext]:hover{
+#toggle-videos-view:hover{
   outline: none;
   background-color: var(--light-blue);
 }
 
-#videos-view[chrome-ext][closed]{
+#videos-view[closed]{
   display: none;
 }
 
 #guide-inner-content[closed] > 
-  *:not(#videos-view[chrome-ext]){
+  *:not(#videos-view){
     display: none;
 }
 
