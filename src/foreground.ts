@@ -57,14 +57,23 @@ const chips: HTMLCollection | undefined = chipBar?.children;
     const [navIcon, youtubeIcon] = [...(guide.header).children];
     const [wrapper, toggleView, videosView] = Factory.elements;
    
+    Factory.toggleOnClick({
+      target: toggleView as HTMLButtonElement, 
+      displayChange: guide.content,
+      inserted: videosView as HTMLDivElement,
+      attribute: 'closed'
+    });
+    Factory.appendOnClick({
+      target: guide.button!, 
+      inserted: grid!, 
+      appendTo: videosView
+    });
+
     wrapper.append(navIcon, youtubeIcon);
     (guide.header).append(wrapper, toggleView);
     (guide.content).append(videosView);
       
-    Factory.addToggleListener({target: toggleView as HTMLButtonElement, 
-                               displayChange: guide.content,
-                               inserted: videosView as HTMLDivElement,
-                               attribute: 'closed'});
+    
   }
 })()
 

@@ -1,4 +1,4 @@
-import { NewElement } from "../interfaces/foreground";
+import { NewElement, EventListener } from "../interfaces/foreground";
 
 export class DOMManipulate{
   constructor(
@@ -20,14 +20,22 @@ export class DOMManipulate{
 
   elements = this.createElements(this.NewElements);
 
-  public addToggleListener(listener: {target: HTMLButtonElement, 
-                                      displayChange: HTMLDivElement,
-                                      inserted: HTMLDivElement,
-                                      attribute: string }){
-    const {target, displayChange, inserted, attribute} = listener;    
-    target.addEventListener('click', () => {
-      displayChange.toggleAttribute(attribute);
-      inserted.toggleAttribute(attribute);
-    })                    
+  public toggleOnClick(listener: EventListener){
+    const {target, displayChange, inserted, attribute} = listener; 
+    if(displayChange && attribute){
+      target.addEventListener('click', () => {
+        displayChange.toggleAttribute(attribute);
+        inserted.toggleAttribute(attribute);
+      })                    
+    }   
+  }
+
+  public appendOnClick(listener: EventListener){
+    const {target, appendTo, inserted} = listener;
+    if(appendTo){
+      target.addEventListener('click', () => {
+        appendTo.append(inserted);
+      })
+    }
   }
 }
