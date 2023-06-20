@@ -4,19 +4,26 @@ export class DOMSelect{
   constructor(
     public Shorts: YoutubeElement,
     public Grid: YoutubeElement,
-    public GuideHeader: YoutubeElement,
+    public Guide: {
+      header: YoutubeElement,
+      content: YoutubeElement
+    },
     public PrimaryContent: Omit<YoutubeElement, 'childrenSelector'>
   ) {}
 
-  elements: Record<string, HTMLElement | null> = {
-    primary: document.querySelector(this.PrimaryContent.selector)
+  elements = {
+    primary: document.querySelector(this.PrimaryContent.selector),
+    guide: {
+      header: document.querySelector
+        (`${this.Guide.header.selector} > ${this.Guide.header.childrenSelector}`),
+      content: document.querySelector
+        (`${this.Guide.content.selector} > ${this.Guide.content.childrenSelector}`)
+    }
   }
 
   parentElements: Record<string, HTMLElement | null> = {
     shorts: document.querySelector(this.Shorts.selector),
     grid: document.querySelector(this.Grid.selector),
-    header: document.querySelector
-      (`${this.GuideHeader.selector} > ${this.GuideHeader.childrenSelector}`)
   }
 
   private getVideos (parent: HTMLElement | null, 

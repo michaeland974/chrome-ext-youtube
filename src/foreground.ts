@@ -13,23 +13,22 @@ const Grid: YoutubeElement = {
   childrenSelector: '#contents'
 }
 
-const Guide: YoutubeElement = {
-  selector: '#guide-wrapper > #guide-content > #guide-renderer',
-  childrenSelector: '#sections' //ytd-guide-renderer
+const PrimaryContent: Omit<YoutubeElement, 'childrenSelector'> = {
+  selector: '#primary'
 }
 
-const GuideButton: YoutubeElement = {
-  selector: '#guide-button',
-  childrenSelector: '#button'
+const Guide: Omit<YoutubeElement, 'childrenSelector'> = {
+  selector: '#guide-content'
 }
 
 const GuideHeader: YoutubeElement = {
-  selector: '#guide-content', 
+  selector: Guide.selector, 
   childrenSelector: '#header'
 }
 
-const PrimaryContent: Omit<YoutubeElement, 'childrenSelector'> = {
-  selector: '#primary'
+const GuideContent: YoutubeElement = {
+  selector: Guide.selector,
+  childrenSelector: '#guide-inner-content'
 }
 
 const chipBar: HTMLElement | null = document.getElementById('chips');
@@ -42,15 +41,14 @@ const chips: HTMLCollection | undefined = chipBar?.children;
   ]);
   const [wrapper, toggle] = Factory.elements;
   
-  const YouTubeDOM = new DOMSelect(Shorts, Grid, GuideHeader, PrimaryContent);
-  const {header, grid} = YouTubeDOM.parentElements;
+  const YouTubeDOM = new DOMSelect
+    (Shorts, Grid, {header: GuideHeader, content: GuideContent}, PrimaryContent);
+  const { header, content }= YouTubeDOM.elements.guide;
     if(header){
       const [ navIcon, youtubeIcon ] = [...header.children];
       wrapper.append(navIcon, youtubeIcon);
       header.append(wrapper, toggle);
     }
-
-  await waitForElement(grid); //check for boolean?
 })()
 
 
