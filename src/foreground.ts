@@ -35,23 +35,25 @@ const chipBar: HTMLElement | null = document.getElementById('chips');
 const chips: HTMLCollection | undefined = chipBar?.children;
 
 (async () => {
-   const YouTubeDOM = new DOMSelect
-    (Shorts, Grid, {header: GuideHeader, content: GuideContent}, PrimaryContent);
-  const { header, content } = YouTubeDOM.elements.guide;
-  
   const Factory = new DOMManipulate([
     {id: 'header-wrapper', tag: 'div'}, 
-    {id: 'toggle-videos-view', tag: 'button', text: 'Homepage Videos'}
+    {id: 'toggle-videos-view', tag: 'button', text: 'Homepage Videos'},
+    {id: 'videos-view', tag: 'div', text: 'open', attribute: 'closed'}
   ]);
-  const [wrapper, toggle] = Factory.elements;
-  Factory.addListener({target: toggle, display: content});
+  const YouTubeDOM = new DOMSelect(
+    Shorts, Grid, {header: GuideHeader, content: GuideContent}, PrimaryContent
+  );
+  const {guide} = YouTubeDOM.elements;
+  const [navIcon, youtubeIcon] = [...(guide.header).children];
+  const [wrapper, toggleView, videosView] = Factory.elements;
   
- 
-  if(header){
-    const [ navIcon, youtubeIcon ] = [...header.children];
-    wrapper.append(navIcon, youtubeIcon);
-    header.append(wrapper, toggle);
-  }
+  wrapper.append(navIcon, youtubeIcon);
+  (guide.header).append(wrapper, toggleView);
+  (guide.content).append(videosView);
+  Factory.addToggleListener({target: toggleView as HTMLButtonElement, 
+                             displayChange: guide.content,
+                             inserted: videosView as HTMLDivElement,
+                             attribute: 'closed'});
 })()
 
 

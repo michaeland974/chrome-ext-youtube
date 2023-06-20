@@ -10,10 +10,9 @@ export class DOMManipulate{
       elements.map((el) => {
         const element = document.createElement(el['tag']);
         element.id = el['id'];
-        element.setAttribute('chrome-ext', 'true');   
-        el['text'] !== undefined ?
-          element.textContent = el['text'] : 
-          element.textContent = '';
+        element.setAttribute('chrome-ext', '');   
+          if(el['text']) element.textContent = el['text'];
+          if(el['attribute']) element.setAttribute(el['attribute'], '');
         return element;
       })
     ) 
@@ -21,11 +20,14 @@ export class DOMManipulate{
 
   elements = this.createElements(this.NewElements);
 
-  public addListener(listener: { target: HTMLElement, 
-                                 display: HTMLDivElement }){
-    const {target, display} = listener;
+  public addToggleListener(listener: {target: HTMLButtonElement, 
+                                      displayChange: HTMLDivElement,
+                                      inserted: HTMLDivElement,
+                                      attribute: string }){
+    const {target, displayChange, inserted, attribute} = listener;    
     target.addEventListener('click', () => {
-      display.toggleAttribute('is-closed');
+      displayChange.toggleAttribute(attribute);
+      inserted.toggleAttribute(attribute);
     })                    
   }
 }

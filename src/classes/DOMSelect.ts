@@ -12,7 +12,7 @@ export class DOMSelect{
   ) {}
 
   elements = {
-    primary: document.querySelector(this.PrimaryContent.selector),
+    primary: document.querySelector(this.PrimaryContent.selector) as HTMLDivElement,
     guide: {
       header: document.querySelector
         (`${this.Guide.header.selector} > ${this.Guide.header.childrenSelector}`) as HTMLDivElement,
@@ -32,7 +32,7 @@ export class DOMSelect{
     return (videos===undefined) ? [] : [...videos];  
   }
 
-  public videos() {
+  public videos(){
     return {
       shorts: this.getVideos(this.parentElements.shorts, 
                              this.Shorts.childrenSelector),
