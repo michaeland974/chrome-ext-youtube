@@ -1,27 +1,26 @@
-import { YoutubeElement } from "../interfaces/interfaces";
+import { YoutubeSelector, YoutubeElementWithNullable, GuideElement } from "../interfaces/foreground";
 
 export class DOMSelect{
   constructor(
-    public Shorts: YoutubeElement,
-    public Grid: YoutubeElement,
-    public Guide: {
-      header: YoutubeElement,
-      content: YoutubeElement
-    },
-    public PrimaryContent: Omit<YoutubeElement, 'childrenSelector'>
+    public Shorts: YoutubeSelector,
+    public Grid: YoutubeSelector,
+    public PrimaryContent: Omit<YoutubeSelector, 'childrenSelector'>,
+    public Guide: Record<keyof GuideElement, YoutubeSelector>
   ) {}
 
-  elements = {
-    primary: document.querySelector(this.PrimaryContent.selector) as HTMLDivElement,
+  elements: Pick<YoutubeElementWithNullable, 'primary' | 'guide'> = {
+    primary: document.querySelector(this.PrimaryContent.selector),
     guide: {
       header: document.querySelector
-        (`${this.Guide.header.selector} > ${this.Guide.header.childrenSelector}`) as HTMLDivElement,
+        (`${this.Guide.header.selector} > ${this.Guide.header.childrenSelector}`),
       content: document.querySelector
-        (`${this.Guide.content.selector} > ${this.Guide.content.childrenSelector}`) as HTMLDivElement
+        (`${this.Guide.content.selector} > ${this.Guide.content.childrenSelector}`),
+      button: document.querySelector
+        (`${this.Guide.button.selector} > ${this.Guide.button.childrenSelector}`)
     }
   }
 
-  parentElements: Record<string, HTMLElement | null> = {
+  parentElements: Pick<YoutubeElementWithNullable, 'shorts' | 'grid'> = {
     shorts: document.querySelector(this.Shorts.selector),
     grid: document.querySelector(this.Grid.selector),
   }

@@ -1,9 +1,6 @@
-listener('https://www.youtube.com/', injectScript);  
+import { TabInject } from "./interfaces/background";
 
-type TabInject = {
-  tab: chrome.tabs.Tab, 
-  targetUrl: string
-}
+listener('https://www.youtube.com/', injectScript);  
 
 async function getTab() {
   const queryOptions = {active: true, 
@@ -23,9 +20,7 @@ function listener(targetUrl: string,
 
 function injectScript (tabInject: TabInject) {
   const {tab, targetUrl} = tabInject;
-
-  if(tab.url && tab.id && 
-     tab.url === targetUrl){
+  if(tab.id){
     chrome.scripting.executeScript({
       target: {tabId: tab.id},
       files: ['./foreground.js']

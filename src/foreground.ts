@@ -1,34 +1,39 @@
 import { DOMSelect } from './classes/DOMSelect';
 import { DOMManipulate } from './classes/DOMManipulate';
-import { YoutubeElement } from './interfaces/interfaces';
-import { waitForElement } from './scripts/utils';
+import { YoutubeSelector } from './interfaces/foreground';
+import { waitForElement } from './scripts';
 
-const Shorts: YoutubeElement = {
+const Shorts: YoutubeSelector = {
   selector: '#contents #content #contents',
   childrenSelector: '#content'
 }
 
-const Grid: YoutubeElement = {
+const Grid: YoutubeSelector = {
   selector: '#contents',
   childrenSelector: '#contents'
 }
 
-const PrimaryContent: Omit<YoutubeElement, 'childrenSelector'> = {
-  selector: '#primary'
+const PrimaryContent: Omit<YoutubeSelector, 'childrenSelector'> = {
+  selector: '#contents'
 }
 
-const Guide: Omit<YoutubeElement, 'childrenSelector'> = {
+const Guide: Omit<YoutubeSelector, 'childrenSelector'> = {
   selector: '#guide-content'
 }
 
-const GuideHeader: YoutubeElement = {
+const GuideHeader: YoutubeSelector = {
   selector: Guide.selector, 
   childrenSelector: '#header'
 }
 
-const GuideContent: YoutubeElement = {
+const GuideContent: YoutubeSelector = {
   selector: Guide.selector,
   childrenSelector: '#guide-inner-content'
+}
+
+const GuideButton: YoutubeSelector = {
+  selector: '#guide-button',
+  childrenSelector: '#button'
 }
 
 const chipBar: HTMLElement | null = document.getElementById('chips');
@@ -41,19 +46,26 @@ const chips: HTMLCollection | undefined = chipBar?.children;
     {id: 'videos-view', tag: 'div', text: 'open', attribute: 'closed'}
   ]);
   const YouTubeDOM = new DOMSelect(
-    Shorts, Grid, {header: GuideHeader, content: GuideContent}, PrimaryContent
+    Shorts, Grid, PrimaryContent, {header: GuideHeader, 
+                                   content: GuideContent, 
+                                   button: GuideButton}, 
   );
-  const {guide} = YouTubeDOM.elements;
-  const [navIcon, youtubeIcon] = [...(guide.header).children];
-  const [wrapper, toggleView, videosView] = Factory.elements;
-  
-  wrapper.append(navIcon, youtubeIcon);
-  (guide.header).append(wrapper, toggleView);
-  (guide.content).append(videosView);
-  Factory.addToggleListener({target: toggleView as HTMLButtonElement, 
-                             displayChange: guide.content,
-                             inserted: videosView as HTMLDivElement,
-                             attribute: 'closed'});
+  const {grid} = YouTubeDOM.parentElements;
+  const {guide, primary} = YouTubeDOM.elements;
+
+  if(guide && guide.header && guide.content){
+    const [navIcon, youtubeIcon] = [...(guide.header).children];
+    const [wrapper, toggleView, videosView] = Factory.elements;
+   
+    wrapper.append(navIcon, youtubeIcon);
+    (guide.header).append(wrapper, toggleView);
+    (guide.content).append(videosView);
+      
+    Factory.addToggleListener({target: toggleView as HTMLButtonElement, 
+                               displayChange: guide.content,
+                               inserted: videosView as HTMLDivElement,
+                               attribute: 'closed'});
+  }
 })()
 
 

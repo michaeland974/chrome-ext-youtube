@@ -1,4 +1,4 @@
-import { NewElement } from "../interfaces/interfaces";
+import { NewElement } from "../interfaces/foreground";
 
 export class DOMManipulate{
   constructor(
