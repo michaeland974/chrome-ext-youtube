@@ -21,7 +21,8 @@ export type GuideElement = {
 }
 
 type YoutubeElement = {
-  primary: HTMLDivElement, 
+  primary: HTMLDivElement,
+  chipBar: HTMLElement,
   guide: WithNull<GuideElement>,
   shorts: HTMLElement,
   grid: HTMLElement

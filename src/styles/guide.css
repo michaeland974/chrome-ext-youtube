@@ -53,5 +53,9 @@
     display: none;
 }
 
+/* Shorts */
+#contents #content #contents{ display: none !important; }
+#contents #content #rich-shelf-header{ display: none !important; }
+
 
 

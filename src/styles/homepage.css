@@ -1,5 +1,5 @@
-#chips{
-  border: 1px solid green;
+#chips[invisible]{
+  display: none !important;
 }
 
 #contents[invisible]{

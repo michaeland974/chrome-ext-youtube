@@ -5,11 +5,13 @@ export class DOMSelect{
     public Shorts: YoutubeSelector,
     public Grid: YoutubeSelector,
     public PrimaryContent: Omit<YoutubeSelector, 'childrenSelector'>,
+    public ChipBar: Omit<YoutubeSelector, 'childrenSelector'>,
     public Guide: Record<keyof GuideElement, YoutubeSelector>
   ) {}
 
-  elements: Pick<YoutubeElementWithNullable, 'primary' | 'guide'> = {
+  elements: Pick<YoutubeElementWithNullable, 'primary' | 'guide' | 'chipBar'> = {
     primary: document.querySelector(this.PrimaryContent.selector),
+    chipBar: document.querySelector(this.ChipBar.selector),
     guide: {
       header: document.querySelector
         (`${this.Guide.header.selector} > ${this.Guide.header.childrenSelector}`),
@@ -32,15 +34,12 @@ export class DOMSelect{
   }
 
   public videos(){
-    return {shorts: this.getVideos(this.parentElements.shorts, 
-                    this.Shorts.childrenSelector),
-            grid: this.getVideos(this.parentElements.grid, 
-                  this.Grid.childrenSelector)
-    }
+    return{ shorts: this.getVideos(this.parentElements.shorts, this.Shorts.childrenSelector),
+            grid: this.getVideos(this.parentElements.grid, this.Grid.childrenSelector) }
   }
 
   public setAttribute(elements: (HTMLElement | null)[],
-                       attribute: string){
+                      attribute: string){
     return elements?.forEach((el) => {
       if(el) el.setAttribute(attribute, '')});
   }
