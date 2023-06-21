@@ -1,3 +1,8 @@
 #chips{
   border: 1px solid green;
 }
+
+#contents[invisible]{
+  display: none !important;
+}
+

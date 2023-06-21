@@ -21,7 +21,7 @@ export class DOMManipulate{
 
   public toggleOnClick(listener: EventListener){
     const {target, displayChange, inserted, attribute} = listener; 
-    if(displayChange && attribute){
+    if(displayChange && attribute && inserted){
       target.addEventListener('click', () => {
         displayChange.toggleAttribute(attribute);
         inserted.toggleAttribute(attribute);
@@ -30,9 +30,10 @@ export class DOMManipulate{
   }
 
   public appendOnClick(listener: EventListener){
-    const {target, appendTo, inserted} = listener;
-    if(appendTo){
+    const {target, appendTo, inserted, attribute} = listener;
+    if(appendTo && inserted && attribute){
       target.addEventListener('click', () => {
+        inserted.removeAttribute(attribute);
         appendTo.append(inserted);
       })
     }

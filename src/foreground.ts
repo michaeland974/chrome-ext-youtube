@@ -52,13 +52,14 @@ const chips: HTMLCollection | undefined = chipBar?.children;
                                    button: GuideButton}, 
   );
   const {guide} = YouTubeDOM.elements;
-  const {grid} = YouTubeDOM.parentElements;
+  const {grid, shorts} = YouTubeDOM.parentElements;
    
   if(guide && guide.button && guide.content && guide.header){      
     const [navIcon, youtubeIcon] = [...(guide.header).children];
     const [wrapper, toggleView, videosView, refresh] = Factory.elements;
       try{
         await waitForElement(grid);
+        YouTubeDOM.setAttribute([grid, shorts], 'invisible');
       } catch(error) {}
 
     Factory.toggleOnClick({
@@ -67,9 +68,10 @@ const chips: HTMLCollection | undefined = chipBar?.children;
       inserted: videosView as HTMLDivElement,
       attribute: 'closed'
     });
-    Factory.appendOnClick({
+    Factory.appendOnClick({ 
       target: guide.button, 
-      inserted: grid ?? refresh, 
+      inserted: grid ?? refresh,
+      attribute: 'invisible',
       appendTo: videosView
     });
 
