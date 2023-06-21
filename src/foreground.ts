@@ -1,7 +1,7 @@
 import { DOMSelect } from './classes/DOMSelect';
 import { DOMManipulate } from './classes/DOMManipulate';
 import { YoutubeSelector } from './interfaces/foreground';
-import { waitForElement } from './scripts';
+import { waitForElement, } from './scripts';
 
 const Shorts: YoutubeSelector = {
   selector: '#contents #content #contents',
@@ -43,20 +43,24 @@ const chips: HTMLCollection | undefined = chipBar?.children;
   const Factory = new DOMManipulate([
     {id: 'header-wrapper', tag: 'div'}, 
     {id: 'toggle-videos-view', tag: 'button', text: 'Homepage Videos'},
-    {id: 'videos-view', tag: 'div', text: 'open', attribute: 'closed'}
+    {id: 'videos-view', tag: 'div', text: 'open', attribute: 'closed'},
+    {id: 'refresh-message', tag: 'div', text: 'refresh',}
   ]);
   const YouTubeDOM = new DOMSelect(
     Shorts, Grid, PrimaryContent, {header: GuideHeader, 
                                    content: GuideContent, 
                                    button: GuideButton}, 
   );
+  const {guide} = YouTubeDOM.elements;
   const {grid} = YouTubeDOM.parentElements;
-  const {guide, primary} = YouTubeDOM.elements;
-
-  if(guide && guide.header && guide.content){
-    const [navIcon, youtubeIcon] = [...(guide.header).children];
-    const [wrapper, toggleView, videosView] = Factory.elements;
    
+  if(guide && guide.button && guide.content && guide.header){      
+    const [navIcon, youtubeIcon] = [...(guide.header).children];
+    const [wrapper, toggleView, videosView, refresh] = Factory.elements;
+      try{
+        await waitForElement(grid);
+      } catch(error) {}
+
     Factory.toggleOnClick({
       target: toggleView as HTMLButtonElement, 
       displayChange: guide.content,
@@ -64,8 +68,8 @@ const chips: HTMLCollection | undefined = chipBar?.children;
       attribute: 'closed'
     });
     Factory.appendOnClick({
-      target: guide.button!, 
-      inserted: grid!, 
+      target: guide.button, 
+      inserted: grid ?? refresh, 
       appendTo: videosView
     });
 
@@ -73,7 +77,8 @@ const chips: HTMLCollection | undefined = chipBar?.children;
     (guide.header).append(wrapper, toggleView);
     (guide.content).append(videosView);
   }
-})()
+  
+})();
 
 
 

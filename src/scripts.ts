@@ -6,15 +6,12 @@ export function waitForElement(element: HTMLElement | null): Promise<boolean> {
         observer.disconnect();
       }
     });
-    if(element){
-      resolve(true);
-    }
-    else{
-      observer.observe(document.body, {
-        childList: true,
-        subtree: true
-      });
-    }
+    if(element) resolve(true);
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+    if(!element) throw new Error;
   });
 };
 
