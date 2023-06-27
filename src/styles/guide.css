@@ -1,15 +1,24 @@
-#guide-content > #header{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  height: auto !important;
-
+#guide-content{
   --light-grey: #dbdbdbc4;
   --light-blue: #def1ff;
   --call-to-action-blue: #065fd4;
   --gap: 12px;
   --guide-font-size: 14px;
   --guide-font-family: "Roboto", "Arial", sans-serif;
+}
+
+#guide-content > #header{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: auto !important;
+/* 
+  --light-grey: #dbdbdbc4;
+  --light-blue: #def1ff;
+  --call-to-action-blue: #065fd4;
+  --gap: 12px;
+  --guide-font-size: 14px;
+  --guide-font-family: "Roboto", "Arial", sans-serif; */
 }
 
 /* Styling for divider on guide */
@@ -44,13 +53,19 @@
   background-color: var(--light-blue);
 }
 
-#videos-view[closed]{
-  display: none;
-}
+#videos-view[closed]{ display: none; }
+#videos-view{ display: grid; }
 
 #guide-inner-content[closed] > 
   *:not(#videos-view){
     display: none;
+}
+
+#refresh-message{
+  font-family: var(--guide-font-family);
+  font-size: var(--guide-font-size);
+  justify-self: center;
+  padding-top: var(--guide-font-size);
 }
 
 /* Shorts */

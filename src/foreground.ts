@@ -37,8 +37,8 @@ const ChipBar: Omit<YoutubeSelector, 'childrenSelector'> = {
   const Factory = new DOMManipulate([
     {id: 'header-wrapper', tag: 'div'}, 
     {id: 'toggle-videos-view', tag: 'button', text: 'Homepage Videos'},
-    {id: 'videos-view', tag: 'div', text: 'open', attribute: 'closed'},
-    {id: 'refresh-message', tag: 'div', text: 'refresh',}
+    {id: 'videos-view', tag: 'div', attribute: 'closed'},
+    {id: 'refresh-message', tag: 'div', text: 'Refresh the page',}
   ]);
   const YouTubeDOM = new DOMSelect(
     Shorts, Grid, PrimaryContent, ChipBar, {header: GuideHeader, 
