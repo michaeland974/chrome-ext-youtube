@@ -5,6 +5,8 @@
   --gap: 12px;
   --guide-font-size: 14px;
   --guide-font-family: "Roboto", "Arial", sans-serif;
+
+  width: 125%;
 }
 
 #guide-content > #header{
@@ -12,13 +14,6 @@
   flex-direction: column;
   align-items: flex-start;
   height: auto !important;
-/* 
-  --light-grey: #dbdbdbc4;
-  --light-blue: #def1ff;
-  --call-to-action-blue: #065fd4;
-  --gap: 12px;
-  --guide-font-size: 14px;
-  --guide-font-family: "Roboto", "Arial", sans-serif; */
 }
 
 /* Styling for divider on guide */
@@ -54,7 +49,10 @@
 }
 
 #videos-view[closed]{ display: none; }
-#videos-view{ display: grid; }
+#videos-view{ 
+  display: grid;
+  padding: 2em; 
+}
 
 #guide-inner-content[closed] > 
   *:not(#videos-view){

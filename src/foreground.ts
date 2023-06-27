@@ -32,6 +32,9 @@ const GuideButton: YoutubeSelector = {
 const ChipBar: Omit<YoutubeSelector, 'childrenSelector'> = {
   selector: '#chips'
 };
+const SearchBar: Omit<YoutubeSelector, 'childrenSelector'> = {
+  selector: '#center'
+};
 
 (async () => {
   const Factory = new DOMManipulate([
@@ -46,7 +49,7 @@ const ChipBar: Omit<YoutubeSelector, 'childrenSelector'> = {
                                             button: GuideButton}, 
   );
   const {guide, chipBar} = YouTubeDOM.elements;
-  const {grid} = YouTubeDOM.parentElements;
+  const {grid} = YouTubeDOM.parentElements
    
   if(guide && guide.button && guide.content && guide.header){      
     const [navIcon, youtubeIcon] = [...(guide.header).children];
@@ -55,16 +58,19 @@ const ChipBar: Omit<YoutubeSelector, 'childrenSelector'> = {
         await waitForElement(grid);
         YouTubeDOM.setAttribute([grid, chipBar], 'invisible');
       } catch(error) {}
+    
+  const {shorts} = YouTubeDOM.videos();
 
     Factory.toggleOnClick({
       target: toggleView as HTMLButtonElement, 
       displayChange: guide.content,
       inserted: videosView,
-      attribute: 'closed'
+      attribute: 'closed',
+      callback: () => YouTubeDOM.videos()
     });
     Factory.appendOnClick({ 
       target: guide.button, 
-      inserted: grid ?? refresh,
+      inserted: YouTubeDOM.videos().grid as HTMLElement[] ?? refresh,//
       attribute: 'invisible',
       appendTo: videosView
     });

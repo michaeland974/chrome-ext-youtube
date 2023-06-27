@@ -16,25 +16,34 @@ export class DOMManipulate{
       })
     ) 
   };
-
   elements = this.createElements(this.NewElements);
 
   public toggleOnClick(listener: EventListener){
-    const {target, displayChange, inserted, attribute} = listener; 
-    if(displayChange && attribute && inserted){
-      target.addEventListener('click', () => {
-        displayChange.toggleAttribute(attribute);
-        inserted.toggleAttribute(attribute);
-      })                    
+    const {target, displayChange, inserted, attribute, callback} = listener; 
+    
+    if(displayChange && attribute && inserted && 
+     !(inserted instanceof Array) && callback){
+        target.addEventListener('click', () => {
+          displayChange.toggleAttribute(attribute);
+          inserted.toggleAttribute(attribute);
+          callback();
+        })                    
     }   
   }
 
   public appendOnClick(listener: EventListener){
     const {target, appendTo, inserted, attribute} = listener;
+    
     if(appendTo && inserted && attribute){
       target.addEventListener('click', () => {
-        inserted.removeAttribute(attribute);
-        appendTo.append(inserted);
+        const insertedVideos = document.createElement("emptyNode");;
+          if(inserted instanceof Array){
+            inserted.forEach((el) => {
+              el.removeAttribute(attribute)
+              insertedVideos.append(el);
+            });
+          }
+        appendTo.append(insertedVideos);
       })
     }
   }

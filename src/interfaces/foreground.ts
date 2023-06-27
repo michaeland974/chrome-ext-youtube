@@ -33,7 +33,8 @@ export type YoutubeElementWithNullable = WithNull<YoutubeElement>;
 export type EventListener = {
   target: HTMLButtonElement, 
   displayChange?: HTMLDivElement, 
-  inserted?: HTMLElement, 
+  inserted?: HTMLElement | HTMLElement[], 
   attribute?: string, 
-  appendTo?: HTMLElement
+  appendTo?: HTMLElement,
+  callback?: () => void
 }

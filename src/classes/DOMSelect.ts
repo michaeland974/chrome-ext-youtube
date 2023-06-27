@@ -34,8 +34,8 @@ export class DOMSelect{
   }
 
   public videos(){
-    return{ shorts: this.getVideos(this.parentElements.shorts, this.Shorts.childrenSelector),
-            grid: this.getVideos(this.parentElements.grid, this.Grid.childrenSelector) }
+    return { shorts: this.getVideos(this.parentElements.shorts, this.Shorts.childrenSelector),
+             grid: this.getVideos(this.parentElements.grid, this.Grid.childrenSelector) }
   }
 
   public setAttribute(elements: (HTMLElement | null)[],
