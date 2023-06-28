@@ -6,7 +6,7 @@
   --guide-font-size: 14px;
   --guide-font-family: "Roboto", "Arial", sans-serif;
 
-  width: 125%;
+  width: 135%;
 }
 
 #guide-content > #header{
@@ -69,6 +69,11 @@
 /* Shorts */
 #contents #content #contents{ display: none !important; }
 #contents #content #rich-shelf-header{ display: none !important; }
-
-
+/* 
+"content_scripts": [
+  {
+    "matches": ["https://www.youtube.com/"],
+    "run_at": "document_end"
+  }
+] */
 

@@ -6,12 +6,16 @@ export class DOMSelect{
     public Grid: YoutubeSelector,
     public PrimaryContent: Omit<YoutubeSelector, 'childrenSelector'>,
     public ChipBar: Omit<YoutubeSelector, 'childrenSelector'>,
+    public InputBar: Omit<YoutubeSelector, 'childrenSelector'>,
+    public Logo: Omit<YoutubeSelector, 'childrenSelector'>,
     public Guide: Record<keyof GuideElement, YoutubeSelector>
   ) {}
 
-  elements: Pick<YoutubeElementWithNullable, 'primary' | 'guide' | 'chipBar'> = {
+  elements: Omit<YoutubeElementWithNullable, 'shorts' | 'grid'> = {
     primary: document.querySelector(this.PrimaryContent.selector),
     chipBar: document.querySelector(this.ChipBar.selector),
+    inputBar: document.querySelector(this.InputBar.selector),
+    logo: document.querySelector(this.Logo.selector),
     guide: {
       header: document.querySelector
         (`${this.Guide.header.selector} > ${this.Guide.header.childrenSelector}`),

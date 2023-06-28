@@ -20,9 +20,11 @@ export type GuideElement = {
   button: HTMLButtonElement
 }
 
-type YoutubeElement = {
+export type YoutubeElement = {
   primary: HTMLDivElement,
   chipBar: HTMLElement,
+  inputBar: HTMLElement,
+  logo: HTMLElement,
   guide: WithNull<GuideElement>,
   shorts: HTMLElement,
   grid: HTMLElement

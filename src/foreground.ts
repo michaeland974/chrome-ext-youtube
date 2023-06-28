@@ -32,8 +32,11 @@ const GuideButton: YoutubeSelector = {
 const ChipBar: Omit<YoutubeSelector, 'childrenSelector'> = {
   selector: '#chips'
 };
-const SearchBar: Omit<YoutubeSelector, 'childrenSelector'> = {
+const InputBar: Omit<YoutubeSelector, 'childrenSelector'> = {
   selector: '#center'
+}; 
+const Logo: Omit<YoutubeSelector, 'childrenSelector'> = {
+  selector: '#logo-icon'
 };
 
 (async () => {
@@ -41,26 +44,24 @@ const SearchBar: Omit<YoutubeSelector, 'childrenSelector'> = {
     {id: 'header-wrapper', tag: 'div'}, 
     {id: 'toggle-videos-view', tag: 'button', text: 'Homepage Videos'},
     {id: 'videos-view', tag: 'div', attribute: 'closed'},
-    {id: 'refresh-message', tag: 'div', text: 'Refresh the page',}
+    {id: 'refresh-message', tag: 'div', text: 'Refresh the page'},
   ]);
   const YouTubeDOM = new DOMSelect(
-    Shorts, Grid, PrimaryContent, ChipBar, {header: GuideHeader, 
-                                            content: GuideContent, 
-                                            button: GuideButton}, 
+    Shorts, Grid, PrimaryContent, ChipBar, InputBar, Logo,
+    {header: GuideHeader, content: GuideContent, button: GuideButton}, 
   );
-  const {guide, chipBar} = YouTubeDOM.elements;
+  const {guide, chipBar, logo, inputBar} = YouTubeDOM.elements;
   const {grid} = YouTubeDOM.parentElements
    
-  if(guide && guide.button && guide.content && guide.header){      
+  if(guide && guide.button && guide.content && guide.header && logo){      
     const [navIcon, youtubeIcon] = [...(guide.header).children];
-    const [wrapper, toggleView, videosView, refresh] = Factory.elements;
+    const [headerWrapper, toggleView, videosView, refresh] = Factory.elements;
       try{
         await waitForElement(grid);
+        // YouTubeDOM.setAttribute([logo, inputBar], 'center')
         YouTubeDOM.setAttribute([grid, chipBar], 'invisible');
       } catch(error) {}
     
-  const {shorts} = YouTubeDOM.videos();
-
     Factory.toggleOnClick({
       target: toggleView as HTMLButtonElement, 
       displayChange: guide.content,
@@ -75,8 +76,8 @@ const SearchBar: Omit<YoutubeSelector, 'childrenSelector'> = {
       appendTo: videosView
     });
 
-    wrapper.append(navIcon, youtubeIcon);
-    (guide.header).append(wrapper, toggleView);
+    headerWrapper.append(navIcon, youtubeIcon);
+    (guide.header).append(headerWrapper, toggleView);
     (guide.content).append(videosView);
   }
   
