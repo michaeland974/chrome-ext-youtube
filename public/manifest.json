@@ -16,12 +16,5 @@
     },
     "host_permissions": [
         "https://www.youtube.com/"
-    ],
-    "content_scripts": [
-        {
-          "matches": ["https://www.youtube.com/"],
-          "css": ["styles/guide.css"],
-          "run_at": "document_end"
-        }
     ]
  }
