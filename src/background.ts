@@ -32,16 +32,11 @@ function injectScript (tabInject: TabInject) {
 
 function injectCSS (tabInject: TabInject) {
   const {tab, targetUrl} = tabInject;
-    if(tab.id && tab.url && tab.url !== targetUrl){
-        chrome.scripting.insertCSS({
-          target: { tabId: tab.id },
-          files: ['./styles/reset.css']
-        });
-    } else if(tab.id){
-        chrome.scripting.insertCSS({
-          target: { tabId: tab.id },
-          files: ['./styles/homepage.css', './styles/guide.css']
-        });
+    if(tab.id){
+      chrome.scripting.insertCSS({
+        target: { tabId: tab.id },
+        files: ['./styles/homepage.css', './styles/guide.css']
+      });
     }
 }
 
