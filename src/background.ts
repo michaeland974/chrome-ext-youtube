@@ -35,7 +35,7 @@ function injectCSS (tabInject: TabInject) {
     if(tab.id){
       chrome.scripting.insertCSS({
         target: { tabId: tab.id },
-        files: ['./styles/homepage.css', './styles/guide.css']
+        files: ['./styles/guide.css']
       });
     }
 }

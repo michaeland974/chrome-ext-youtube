@@ -6,7 +6,6 @@ export class DOMSelect{
     public Grid: YoutubeSelector,
     public PrimaryContent: Omit<YoutubeSelector, 'childrenSelector'>,
     public ChipBar: Omit<YoutubeSelector, 'childrenSelector'>,
-    public InputBar: Omit<YoutubeSelector, 'childrenSelector'>,
     public Logo: Omit<YoutubeSelector, 'childrenSelector'>,
     public Guide: Record<keyof GuideElement, YoutubeSelector>
   ) {}
@@ -14,7 +13,6 @@ export class DOMSelect{
   elements: Omit<YoutubeElementWithNullable, 'shorts' | 'grid'> = {
     primary: document.querySelector(this.PrimaryContent.selector),
     chipBar: document.querySelector(this.ChipBar.selector),
-    inputBar: document.querySelector(this.InputBar.selector),
     logo: document.querySelector(this.Logo.selector),
     guide: {
       header: document.querySelector
@@ -42,7 +40,7 @@ export class DOMSelect{
              grid: this.getVideos(this.parentElements.grid, this.Grid.childrenSelector) }
   }
 
-  public setAttribute(elements: (HTMLElement | null)[],
+  public setAttributes(elements: (HTMLElement | null)[],
                       attribute: string){
     return elements?.forEach((el) => {
       if(el) el.setAttribute(attribute, '')});

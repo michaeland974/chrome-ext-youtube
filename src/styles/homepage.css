@@ -6,13 +6,13 @@
   display: none !important;
 }
 
-* {
-  z-index: 1;
-}
-
-#center{
-  z-index: -3;
-  transform: translateY(50vh);
+#logo-icon[center]{
+  transform: translateX(-50%) scale(2);
+  left: 50vw;
+  top: 25vh;
+  position: absolute;
+  display: block;
+  z-index: -5 !important;
 }
 
 

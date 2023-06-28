@@ -36,7 +36,7 @@ export class DOMManipulate{
     
     if(appendTo && inserted && attribute){
       target.addEventListener('click', () => {
-        const insertedVideos = document.createElement("emptyNode");;
+        const insertedVideos = document.createElement("emptyNode");
           if(inserted instanceof Array){
             inserted.forEach((el) => {
               el.removeAttribute(attribute)
@@ -47,5 +47,5 @@ export class DOMManipulate{
       })
     }
   }
-  
+
 }

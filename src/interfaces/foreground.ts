@@ -23,7 +23,6 @@ export type GuideElement = {
 export type YoutubeElement = {
   primary: HTMLDivElement,
   chipBar: HTMLElement,
-  inputBar: HTMLElement,
   logo: HTMLElement,
   guide: WithNull<GuideElement>,
   shorts: HTMLElement,

@@ -1,7 +1,7 @@
 import { DOMSelect } from './classes/DOMSelect';
 import { DOMManipulate } from './classes/DOMManipulate';
 import { YoutubeSelector } from './interfaces/foreground';
-import { waitForElement, } from './scripts';
+import { waitForElement } from './scripts';
 
 const Shorts: YoutubeSelector = {
   selector: '#contents #content #dismissible',
@@ -32,12 +32,9 @@ const GuideButton: YoutubeSelector = {
 const ChipBar: Omit<YoutubeSelector, 'childrenSelector'> = {
   selector: '#chips'
 };
-const InputBar: Omit<YoutubeSelector, 'childrenSelector'> = {
-  selector: '#center'
-}; 
 const Logo: Omit<YoutubeSelector, 'childrenSelector'> = {
-  selector: '#logo-icon'
-};
+  selector: '#logo-icon',
+}; 
 
 (async () => {
   const Factory = new DOMManipulate([
@@ -47,10 +44,10 @@ const Logo: Omit<YoutubeSelector, 'childrenSelector'> = {
     {id: 'refresh-message', tag: 'div', text: 'Refresh the page'},
   ]);
   const YouTubeDOM = new DOMSelect(
-    Shorts, Grid, PrimaryContent, ChipBar, InputBar, Logo,
+    Shorts, Grid, PrimaryContent, ChipBar, Logo,
     {header: GuideHeader, content: GuideContent, button: GuideButton}, 
   );
-  const {guide, chipBar, logo, inputBar} = YouTubeDOM.elements;
+  const {guide, chipBar, logo} = YouTubeDOM.elements;
   const {grid} = YouTubeDOM.parentElements
    
   if(guide && guide.button && guide.content && guide.header && logo){      
@@ -58,8 +55,8 @@ const Logo: Omit<YoutubeSelector, 'childrenSelector'> = {
     const [headerWrapper, toggleView, videosView, refresh] = Factory.elements;
       try{
         await waitForElement(grid);
-        // YouTubeDOM.setAttribute([logo, inputBar], 'center')
-        YouTubeDOM.setAttribute([grid, chipBar], 'invisible');
+        logo.setAttribute('center', '');
+        YouTubeDOM.setAttributes([grid, chipBar], 'invisible');
       } catch(error) {}
     
     Factory.toggleOnClick({
@@ -71,7 +68,7 @@ const Logo: Omit<YoutubeSelector, 'childrenSelector'> = {
     });
     Factory.appendOnClick({ 
       target: guide.button, 
-      inserted: YouTubeDOM.videos().grid as HTMLElement[] ?? refresh,//
+      inserted: YouTubeDOM.videos().grid as HTMLElement[] ?? refresh,
       attribute: 'invisible',
       appendTo: videosView
     });
