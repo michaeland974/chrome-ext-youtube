@@ -4,6 +4,7 @@
 **Dependencies:** [Webpack](https://www.npmjs.com/package/webpack-cli)<br>
 **Screenshots:** <br />
 <br />
+___
 1.
 ![view1chrome](https://github.com/michaeland974/chrome-ext-youtube/assets/110441553/7580cb05-1a3b-463c-bd89-fa18263d091d) 
 <br />
