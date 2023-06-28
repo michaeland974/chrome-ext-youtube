@@ -1,6 +1,6 @@
 {
-    "name": "Minimize for Youtube",
-    "description": "Simplifying the Youtube Homepage",
+    "name": "Simplify for Youtube",
+    "description": "Minimizing the Youtube Homepage",
     "version": "1.0",
     "manifest_version": 3,
     "action": {},
