@@ -1,5 +1,4 @@
 **Description:** A chrome extension that simplifies the Youtube homepage, moving recommended videos to the guide tab.<br>
-**Live Extension:** In development<br>
 **Tech Stack:** Typescript, CSS<br>
 **Dependencies:** [Webpack](https://www.npmjs.com/package/webpack-cli)<br>
 **Screenshots:** <br />
